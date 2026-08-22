@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --board: #2b3a2e;
+  --board-dark: #212d24;
+  --paper: #f2ead8;
+  --paper-dim: #e8dec7;
+  --ink: #1f2937;
+  --chalk: #f5f5f0;
+  --marker-red: #c1443d;
+  --chalk-yellow: #e8b54d;
+  --pin-grey: #8a8f87;
+}
+
+@theme inline {
+  --color-board: var(--board);
+  --color-board-dark: var(--board-dark);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-ink: var(--ink);
+  --color-chalk: var(--chalk);
+  --color-marker: var(--marker-red);
+  --color-yellow: var(--chalk-yellow);
+  --color-pin: var(--pin-grey);
+  --font-display: "Caveat", cursive;
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background: var(--board);
+  color: var(--chalk);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+/* subtle chalkboard texture */
+.board-texture {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.025) 0, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0, transparent 45%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.008) 0px, transparent 1px, transparent 3px);
+}
+
+/* torn paper top edge via clip-path zigzag */
+.torn-top {
+  clip-path: polygon(
+    0% 6px, 4% 0%, 8% 6px, 12% 1px, 16% 7px, 20% 0%, 24% 5px, 28% 1px,
+    32% 6px, 36% 0%, 40% 5px, 44% 1px, 48% 6px, 52% 0%, 56% 6px, 60% 1px,
+    64% 5px, 68% 0%, 72% 6px, 76% 1px, 80% 5px, 84% 0%, 88% 6px, 92% 1px,
+    96% 5px, 100% 0%,
+    100% 100%, 0% 100%
+  );
+}
+
+@keyframes pin-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-3deg); }
+}
+
+.card-hover:hover .pin-dot {
+  animation: pin-wiggle 0.4s ease-in-out;
+}
